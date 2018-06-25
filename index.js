@@ -16,6 +16,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'))
 
+app.get('/', (req, res) => {
+  res.render('home')
+})
+
 app.get('/listpokemon', (req,res) =>{
   jsonfile.readFile(FILE, (err, obj) =>{
     let n = {
@@ -26,6 +30,22 @@ app.get('/listpokemon', (req,res) =>{
 })
 
 app.get('/pokemon/:id', (request, response) => {
+  jsonfile.readFile(FILE, (err, obj) => {
+    let inputId = request.params.id;
+    let pokemon = obj.pokemon.find((currentPokemon) => {
+      return currentPokemon.id === parseInt(inputId, 10);
+    });
+
+    if (pokemon === undefined) {
+      response.status(404);
+      response.send("not found");
+    } else {
+      response.render('findpokemon.jsx', pokemon)
+    }
+  });
+});
+
+app.post('/pokemon/:id', (request, response) => {
   jsonfile.readFile(FILE, (err, obj) => {
     let inputId = request.params.id;
     let pokemon = obj.pokemon.find((currentPokemon) => {

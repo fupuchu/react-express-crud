@@ -5,14 +5,20 @@ class ListPokemon extends React.Component {
   render() {
     const ListAllPokemon =
     this.props.PokeObj.map(function(x){
+      let actualID = x.id - 1
+      let anchor = '/updatepokemon/' + actualID
       return (
-        <p>{x.name}</p>
+        <p>
+          <a href={anchor}>
+            {x.name}
+          </a>
+        </p>
       )
     })
     return (
       <LayoutContainer>
       <div>
-      <h1>Hello World!</h1>
+      <h1>Click on the pokemon to edit!</h1>
       {ListAllPokemon}
     </div>
   </LayoutContainer>)

@@ -1,14 +1,14 @@
 var React = require('react');
 var LayoutContainer = require('./layout.jsx');
 
-class ListPokemon extends React.Component {
+class Home extends React.Component {
   render() {
     return (<LayoutContainer>
       <div className="container">
         <h1>
-          PoorMan Pokedex
+          {this.props.msg}
         </h1>
-        <form action="/pokemon/:id">
+        <form method="post" action="/findpokemon">
           <input type="number" name="id" />
           <input type="submit" />
         </form>
@@ -17,4 +17,4 @@ class ListPokemon extends React.Component {
   }
 }
 
-module.exports = ListPokemon;
+module.exports = Home;

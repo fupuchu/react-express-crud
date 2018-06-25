@@ -20,15 +20,15 @@ class LayoutContainer extends React.Component {
       <NavBar>
         <NavBar.Header>
           <NavBar.Brand>
-            <a href="#home">Weakass Pokedex</a>
+            <a href="/">Weakass Pokedex</a>
           </NavBar.Brand>
         </NavBar.Header>
         <Nav>
-          <NavItem href="#">
-            Link
+          <NavItem href="/listpokemon">
+            List Pokemon
           </NavItem>
-          <NavItem href="#">
-            Link
+          <NavItem href="/addpokemon">
+            Add Pokemon
           </NavItem>
         </Nav>
       </NavBar>

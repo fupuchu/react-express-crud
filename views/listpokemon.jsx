@@ -5,7 +5,7 @@ class ListPokemon extends React.Component {
   render() {
     const ListAllPokemon =
     this.props.PokeObj.map(function(x){
-      let actualID = x.id - 1
+      let actualID = x.id
       let anchor = '/updatepokemon/' + actualID
       return (
         <p>

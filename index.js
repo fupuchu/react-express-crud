@@ -21,6 +21,10 @@ app.get('/', (req, res) => {
 
 app.get('/listpokemon', (req, res) => {
   jsonfile.readFile(FILE, (err, obj) => {
+    let results = obj.pokemon.find(function(element){
+      return element == 4
+    })
+    console.log(results);
     let n = {
       PokeObj: obj.pokemon
     }
@@ -72,9 +76,6 @@ app.get('/addpokemon/', (req, res) => {
   jsonfile.readFile(FILE, (err, obj) => {
     obj["pokemon"].push(req.body);
     const newData = obj;
-    jsonfile.writeFile(FILE, newData, (err) => {
-      console.error(err);
-    })
   })
   res.render('addpokemon')
 })

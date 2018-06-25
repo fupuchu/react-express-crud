@@ -45,18 +45,24 @@ app.get('/pokemon/new', (req, res) => {
   console.log("Create New Pokemon");
 })
 
-app.post('/pokemon', (req, res) => {
-  console.log(req.body);
-  jsonfile.readFile(FILE, (err, obj) => {
-    obj["pokemon"].push(req.body);
-    const newData = obj;
-    jsonfile.writeFile(FILE, newData, (err) =>{
-      console.error(err);
-    })
-  })
-  res.sendFile(path.join(__dirname, '/public', 'success.html'));
+// app.get('/updatepokemon/:id', (req, res) => {
+//   jsonfile.readFile(FILE, (err, obj) =>{
+//     let n = {
+//       PokeObj : obj.pokemon,
+//       PokeID : req.params.id
+//     }
+//     res.render('updatepokemon', n);
+//   });
+// })
+
+app.get('/updatepokemon/:id', (request, response) => {
+    jsonfile.readFile('pokedex.json', (err, obj) => {
+
+        let index = parseInt( request.params.id );
+        let pokename = obj.pokemon[index - 1]
+
+        response.render('updatepokemon', pokename);
+    });
 })
 
-
-
-app.listen(3000, () => console.log('~~~ Tuning in to the waves of port 3000 ~~~'));
+app.listen(8080, () => console.log('~~~ Tuning in to the waves of port 8080 ~~~'));
